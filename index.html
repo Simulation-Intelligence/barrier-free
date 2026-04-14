@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <title>Robust and Efficient Penetration-Free Elastodynamics without Barriers</title>
+    <style>
+        body {
+            margin: 0;
+            padding-top: 30px;
+            padding-bottom: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .title {
+            margin-top: 2rem !important;
+        }
+
+        .title.is-3 {
+            margin-top: 3rem !important;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .abstract-block {
+            margin-top: 0;
+            text-align: left;
+            padding-top: 2rem;
+        }
+
+        .abstract-block p {
+            font-size: 1.05rem;
+            line-height: 1.75;
+        }
+
+        .section .title.is-3,
+        .content .title {
+            margin-top: 0 !important;
+            margin-bottom: 1rem !important;
+        }
+
+        .demo-video {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .demo-carousel {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .demo-track {
+            display: flex;
+            gap: 1rem;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            padding: 0.25rem 0;
+            scrollbar-width: none;
+            scroll-snap-type: x mandatory;
+        }
+
+        .demo-track::-webkit-scrollbar {
+            display: none;
+        }
+
+        .demo-card {
+            flex: 0 0 auto;
+            width: 100%;
+            scroll-snap-align: start;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 70vh;
+        }
+
+        .demo-card .demo-video {
+            border-radius: 6px;
+            width: auto;
+            max-width: 100%;
+            max-height: 68vh;
+        }
+
+        .demo-card-funnel {
+        }
+
+        .demo-card-funnel .demo-video {
+            max-height: 68vh;
+        }
+
+        .scroll-button {
+            flex: 0 0 auto;
+            width: 2.75rem;
+            height: 2.75rem;
+            border: none;
+            border-radius: 999px;
+            background: #363636;
+            color: #fff;
+            font-size: 1.5rem;
+            line-height: 1;
+            cursor: pointer;
+        }
+
+        .scroll-button:hover {
+            background: #222;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container has-text-centered">
+        <p class="title is-1">Robust and Efficient Penetration-Free Elastodynamics without Barriers</p>
+        <p class="subtitle is-4">ACM Transactions on Graphics (SIGGRAPH), 2026</p>
+        <p class="title is-5 mt-2">
+            <a href="https://www.csd.cmu.edu/people/doctoral-student/juntian-zheng" target="_blank">Juntian Zheng</a><sup>1</sup>,
+            <a href="https://roushelfy.github.io/" target="_blank">Zhaofeng Luo</a><sup>1</sup>,
+            <a href="https://www.cs.cmu.edu/~minchenl/" target="_blank">Minchen Li</a><sup>1 2</sup>
+        </p>
+        <p class="subtitle is-5">
+            <sup>1</sup> Carnegie Mellon University &nbsp;
+            <sup>2</sup> Genesis AI
+        </p>
+        <div class="is-flex is-justify-content-center">
+            <span class="icon-text mx-1">
+                <a class="button is-dark" href="https://arxiv.org/pdf/2512.12151" role="button" target="_blank">
+                    <span class="icon"><ion-icon name="document-text-outline"></ion-icon></span>
+                    <span>Paper</span>
+                </a>
+            </span>
+            <span class="icon-text mx-1">
+                <a class="button is-dark" href="https://github.com/wiso-enoji/Barrier-Free-Supplementary" role="button" target="_blank">
+                    <span class="icon"><ion-icon name="folder-open-outline"></ion-icon></span>
+                    <span>Supplementary</span>
+                </a>
+            </span>
+        </div>
+        <p class="has-text-centered mt-3">Code &amp; data coming soon!</p>
+    </div>
+
+    <div class="container is-max-desktop has-text-centered">
+        <img src="assets/teaser_small.jpg" alt="Teaser" style="width: 100%; max-width: 1200px; height: auto; margin-top: 2rem;">
+        <section class="section abstract-block">
+            <h2 class="title is-3 has-text-centered">Abstract</h2>
+            <p>
+                We introduce a barrier-free optimization framework for non-penetration
+                elastodynamic simulation that matches the robustness of Incremental Potential
+                Contact (IPC) while overcoming its two primary efficiency bottlenecks:
+                reliance on logarithmic barrier functions to enforce non-penetration
+                constraints, which leads to ill-conditioned systems and significantly slows
+                down the convergence of iterative linear solvers, and the time-of-impact
+                locking issue, which restricts active-set exploration in collision-intensive
+                scenes and requires a large number of Newton iterations. We propose a novel
+                second-order constrained optimization framework featuring a custom augmented
+                Lagrangian solver that avoids TOI locking by immediately incorporating all
+                requisite contact pairs detected via CCD, enabling more efficient active-set
+                exploration and leading to significantly fewer Newton iterations. By
+                adaptively updating Lagrange multipliers rather than increasing penalty
+                stiffness, our method prevents stagnation at zero TOI while maintaining a
+                well-conditioned system. We further introduce a constraint filtering and
+                decay mechanism to keep the active set compact and stable. A comprehensive
+                set of experiments demonstrates the efficiency, robustness, finite-step
+                termination, and first-order time integration accuracy of our method under
+                a cumulative TOI-based termination criterion. With a GPU-optimized simulator
+                design, our method achieves an up to 103x speedup over GIPC on challenging,
+                contact-rich benchmarks.
+            </p>
+        </section>
+
+        <section class="section">
+            <h2 class="title is-3 has-text-centered">Video Demos</h2>
+            <div class="demo-carousel">
+                <button class="scroll-button" type="button" id="scroll-left" aria-label="Scroll demos left">&#8249;</button>
+                <div class="demo-track" id="demo-track">
+                    <div class="demo-card">
+                        <video class="demo-video" muted autoplay controls loop playsinline>
+                            <source src="compressed/squishy.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="demo-card">
+                        <video class="demo-video" muted autoplay controls loop playsinline>
+                            <source src="compressed/animals.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="demo-card">
+                        <video class="demo-video" muted autoplay controls loop playsinline>
+                            <source src="compressed/chains.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="demo-card demo-card-funnel">
+                        <video class="demo-video" muted autoplay controls loop playsinline>
+                            <source src="compressed/funnel.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="demo-card">
+                        <video class="demo-video" muted autoplay controls loop playsinline>
+                            <source src="compressed/hole.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="demo-card">
+                        <video class="demo-video" muted autoplay controls loop playsinline>
+                            <source src="compressed/ramen.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="demo-card">
+                        <video class="demo-video" muted autoplay controls loop playsinline>
+                            <source src="compressed/rigid.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="demo-card">
+                        <video class="demo-video" muted autoplay controls loop playsinline>
+                            <source src="compressed/rods.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="demo-card">
+                        <video class="demo-video" muted autoplay controls loop playsinline>
+                            <source src="compressed/roller.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                </div>
+                <button class="scroll-button" type="button" id="scroll-right" aria-label="Scroll demos right">&#8250;</button>
+            </div>
+        </section>
+
+        <section class="section" id="BibTeX">
+            <div class="container is-max-desktop content">
+                <h2 class="title">BibTeX</h2>
+                <pre><code>TODO</code></pre>
+            </div>
+        </section>
+    </div>
+    <script>
+        const demoTrack = document.getElementById("demo-track");
+        const scrollLeftButton = document.getElementById("scroll-left");
+        const scrollRightButton = document.getElementById("scroll-right");
+        const scrollAmount = () => Math.max(demoTrack.clientWidth * 0.85, 320);
+
+        scrollLeftButton.addEventListener("click", () => {
+            demoTrack.scrollBy({ left: -scrollAmount(), behavior: "smooth" });
+        });
+
+        scrollRightButton.addEventListener("click", () => {
+            demoTrack.scrollBy({ left: scrollAmount(), behavior: "smooth" });
+        });
+    </script>
+</body>
+</html>
