@@ -36,7 +36,7 @@
 
         .abstract-block {
             margin-top: 0;
-            text-align: left;
+            text-align: justify;
             padding-top: 2rem;
         }
 
@@ -535,20 +535,20 @@
 </head>
 <body>
     <div class="container has-text-centered">
-        <p class="title is-1">Robust and Efficient Penetration-Free Elastodynamics without Barriers</p>
-        <p class="subtitle is-4">ACM Transactions on Graphics (SIGGRAPH), 2026</p>
+        <p class="title is-2">Robust and Efficient Penetration-Free Elastodynamics without Barriers</p>
         <p class="title is-5 mt-2">
             <a href="https://www.csd.cmu.edu/people/doctoral-student/juntian-zheng" target="_blank">Juntian Zheng</a><sup>1</sup>,
             <a href="https://roushelfy.github.io/" target="_blank">Zhaofeng Luo</a><sup>1</sup>,
             <a href="https://www.cs.cmu.edu/~minchenl/" target="_blank">Minchen Li</a><sup>1 2</sup>
         </p>
         <p class="subtitle is-5">
-            <sup>1</sup> Carnegie Mellon University &nbsp;
-            <sup>2</sup> Genesis AI
+            <sup>1</sup> <a href="https://www.cmu.edu/" target="_blank">Carnegie Mellon University</a> &nbsp;
+            <sup>2</sup> <a href="https://www.genesis.ai/" target="_blank">Genesis AI</a>
         </p>
+        <p class="subtitle is-4">ACM Transactions on Graphics, 2026 (presentation at SIGGRAPH 2026)</p>
         <div class="is-flex is-justify-content-center">
             <span class="icon-text mx-1">
-                <a class="button is-dark" href="https://arxiv.org/pdf/2512.12151" role="button" target="_blank">
+                <a class="button is-dark" href="https://doi.org/10.1145/3811035" role="button" target="_blank">
                     <span class="icon"><ion-icon name="document-text-outline"></ion-icon></span>
                     <span>Paper</span>
                 </a>
@@ -568,27 +568,22 @@
         <section class="section abstract-block">
             <h2 class="title is-3 has-text-centered">Abstract</h2>
             <p>
-                We introduce a barrier-free optimization framework for non-penetration
-                elastodynamic simulation that matches the robustness of Incremental Potential
-                Contact (IPC) while overcoming its two primary efficiency bottlenecks:
-                reliance on logarithmic barrier functions to enforce non-penetration
-                constraints, which leads to ill-conditioned systems and significantly slows
-                down the convergence of iterative linear solvers, and the time-of-impact
-                locking issue, which restricts active-set exploration in collision-intensive
-                scenes and requires a large number of Newton iterations. We propose a novel
-                second-order constrained optimization framework featuring a custom augmented
-                Lagrangian solver that avoids TOI locking by immediately incorporating all
-                requisite contact pairs detected via CCD, enabling more efficient active-set
-                exploration and leading to significantly fewer Newton iterations. By
-                adaptively updating Lagrange multipliers rather than increasing penalty
-                stiffness, our method prevents stagnation at zero TOI while maintaining a
-                well-conditioned system. We further introduce a constraint filtering and
-                decay mechanism to keep the active set compact and stable. A comprehensive
-                set of experiments demonstrates the efficiency, robustness, finite-step
-                termination, and first-order time integration accuracy of our method under
-                a cumulative TOI-based termination criterion. With a GPU-optimized simulator
-                design, our method achieves an up to 103x speedup over GIPC on challenging,
-                contact-rich benchmarks.
+                We introduce a barrier-free optimization framework for non-penetration elastodynamic simulation 
+                that matches the robustness of Incremental Potential Contact (IPC) while overcoming its two primary 
+                efficiency bottlenecks: <i>(1)</i> reliance on logarithmic barrier functions to enforce non-penetration 
+                constraints, which leads to ill-conditioned systems and significantly slows down the convergence of 
+                iterative linear solvers; and <i>(2)</i> the time-of-impact (TOI) locking issue, which restricts active-set 
+                exploration in collision-intensive scenes and requires a large number of Newton iterations. We propose 
+                a novel second-order constrained optimization framework featuring a custom augmented Lagrangian solver 
+                that avoids TOI locking by immediately incorporating all requisite contact pairs detected via CCD, 
+                enabling more efficient active-set exploration and leading to significantly fewer Newton iterations. 
+                By adaptively updating Lagrange multipliers rather than increasing penalty stiffness, our method prevents 
+                stagnation at zero TOI while maintaining a well-conditioned system. We further introduce a constraint 
+                filtering and decay mechanism to keep the active set compact and stable. A comprehensive set of 
+                experiments demonstrates the efficiency, robustness, finite-step termination, and first-order time 
+                integration accuracy of our method under a cumulative TOI-based termination criterion. With a 
+                GPU-optimized simulator design, our method achieves an up to <b>103x</b> speedup over GIPC on challenging, 
+                contact-rich benchmarks - scenarios that were previously tractable only with barrier-based methods.
             </p>
         </section>
 
@@ -722,10 +717,9 @@
 <pre><code>@article{zheng2026barrierfree,
   author     = {Zheng, Juntian and Luo, Zhaofeng and Li, Minchen},
   title      = {Robust and Efficient Penetration-Free Elastodynamics without Barriers},
-  journal    = {ACM Transactions on Graphics},
+  journal    = {ACM Trans. Graph.},
   year       = {2026},
-  volume     = {45},
-  number     = {4},
+  month      = apr,
   publisher  = {Association for Computing Machinery},
   address    = {New York, NY, USA},
   issn       = {0730-0301},
