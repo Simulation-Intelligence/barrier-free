@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,700;1,500&family=Inter:wght@700;800&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,900&family=Space+Grotesk:wght@700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,500;1,700&display=swap">
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <title>Robust and Efficient Penetration-Free Elastodynamics without Barriers</title>
@@ -118,69 +118,13 @@
             background: #222;
         }
 
-        /* ===== "No barrier energies" banner ===== */
+        /* ===== Strike headline ===== */
         :root {
             --accent: #b8332a;
-            --accent-soft: #f4d4cf;
             --ink: #1a1a1a;
-            --muted: #6b6b6b;
         }
 
-        .banner-section {
-            padding-top: 1rem;
-            padding-bottom: 1rem;
-        }
-
-        .variant-switcher {
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            margin-bottom: 2.5rem;
-            flex-wrap: wrap;
-        }
-
-        .variant-switcher button {
-            background: none;
-            border: none;
-            padding: 0.4rem 0.2rem;
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            font-size: 0.72rem;
-            font-weight: 700;
-            letter-spacing: 0.22em;
-            text-transform: uppercase;
-            color: var(--muted);
-            cursor: pointer;
-            border-bottom: 2px solid transparent;
-            transition: color 0.2s, border-color 0.2s;
-        }
-
-        .variant-switcher button:hover {
-            color: var(--ink);
-        }
-
-        .variant-switcher button.is-active {
-            color: var(--accent);
-            border-bottom-color: var(--accent);
-        }
-
-        .banner-stage {
-            min-height: 280px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .banner-variant {
-            width: 100%;
-            padding: 2rem 0.5rem;
-        }
-
-        .banner-variant[hidden] {
-            display: none;
-        }
-
-        /* ---- Variant 1: Strike ---- */
-        .variant-strike {
+        .strike-headline {
             font-family: 'Cormorant Garamond', Georgia, serif;
             font-size: 3rem;
             font-style: italic;
@@ -188,25 +132,27 @@
             color: var(--ink);
             line-height: 1.3;
             text-align: center;
+            margin: 3rem 0 2rem;
         }
 
-        .variant-strike .no {
+        .strike-headline .no {
             display: inline-block;
             font-weight: 700;
             font-style: italic;
-            color: var(--ink);
             margin-right: 0.25em;
             opacity: 0;
             transform: scale(0.6) translateX(-24px);
+            animation: headline-no 0.65s cubic-bezier(0.34, 1.56, 0.64, 1) 1.85s forwards;
         }
 
-        .variant-strike .strike-target {
+        .strike-headline .strike-target {
             position: relative;
             display: inline-block;
             opacity: 0;
+            animation: headline-fade 0.7s ease-out 0s forwards;
         }
 
-        .variant-strike .strike-target::after {
+        .strike-headline .strike-target::after {
             content: '';
             position: absolute;
             left: -3%;
@@ -218,319 +164,30 @@
             transform: translateY(-50%) rotate(-1.2deg);
             transform-origin: left center;
             box-shadow: 0 0 0.4px rgba(184, 51, 42, 0.4);
+            animation: headline-strike 0.85s cubic-bezier(0.65, 0, 0.35, 1) 0.9s forwards;
         }
 
-        .variant-strike .tail {
+        .strike-headline .tail {
             opacity: 0;
+            animation: headline-fade 0.7s ease-out 0.2s forwards;
         }
 
-        .banner-variant[data-variant="1"].is-playing .strike-target {
-            animation: v1-fade 0.7s ease-out 0s forwards;
-        }
-        .banner-variant[data-variant="1"].is-playing .tail {
-            animation: v1-fade 0.7s ease-out 0.2s forwards;
-        }
-        .banner-variant[data-variant="1"].is-playing .strike-target::after {
-            animation: v1-strike 0.85s cubic-bezier(0.65, 0, 0.35, 1) 0.9s forwards;
-        }
-        .banner-variant[data-variant="1"].is-playing .no {
-            animation: v1-no 0.65s cubic-bezier(0.34, 1.56, 0.64, 1) 1.85s forwards;
-        }
+        @keyframes headline-fade { to { opacity: 1; } }
+        @keyframes headline-strike { to { width: 106%; } }
+        @keyframes headline-no { to { opacity: 1; transform: scale(1) translateX(0); } }
 
-        @keyframes v1-fade {
-            to { opacity: 1; }
-        }
-        @keyframes v1-strike {
-            to { width: 106%; }
-        }
-        @keyframes v1-no {
-            to { opacity: 1; transform: scale(1) translateX(0); }
-        }
-
-        /* ---- Variant 2: Sweep ---- */
-        .variant-sweep {
-            text-align: center;
-            font-family: 'Inter', -apple-system, sans-serif;
-            text-transform: uppercase;
-            line-height: 1.1;
-        }
-
-        .variant-sweep .line-1 {
-            font-size: 2.5rem;
-            font-weight: 800;
-            letter-spacing: 0.08em;
-            opacity: 0;
-            display: flex;
-            justify-content: center;
-            align-items: baseline;
-            gap: 0.25em;
-            flex-wrap: wrap;
-        }
-
-        .variant-sweep .no {
-            color: var(--accent);
-            font-size: 4rem;
-            display: inline-block;
-            transform-origin: center;
-        }
-
-        .variant-sweep .sweep-target {
-            position: relative;
-            display: inline-block;
-            color: var(--ink);
-            padding: 0.04em 0.15em;
-            z-index: 0;
-        }
-
-        .variant-sweep .sweep-target::before {
-            content: '';
-            position: absolute;
-            inset: 0.08em -0.04em 0.08em -0.04em;
-            background: var(--accent-soft);
-            z-index: -1;
-            transform: scaleX(0);
-            transform-origin: left center;
-            border-radius: 2px;
-        }
-
-        .variant-sweep .line-2 {
-            font-size: 0.95rem;
-            font-weight: 700;
-            letter-spacing: 0.32em;
-            color: var(--muted);
-            margin-top: 1.5rem;
-            opacity: 0;
-        }
-
-        .banner-variant[data-variant="2"].is-playing .line-1 {
-            animation: v2-fade 0.6s ease-out 0s forwards;
-        }
-        .banner-variant[data-variant="2"].is-playing .sweep-target::before {
-            animation: v2-sweep 0.9s ease-out 0.6s forwards;
-        }
-        .banner-variant[data-variant="2"].is-playing .no {
-            animation: v2-pulse 3.5s ease-in-out 1.7s infinite;
-        }
-        .banner-variant[data-variant="2"].is-playing .line-2 {
-            animation: v2-fade 0.5s ease-out 1.3s forwards;
-        }
-
-        @keyframes v2-fade { to { opacity: 1; } }
-        @keyframes v2-sweep { to { transform: scaleX(1); } }
-        @keyframes v2-pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.07); }
-        }
-
-        /* ---- Variant 3: Editorial ---- */
-        .variant-editorial {
-            text-align: center;
-            font-family: 'Playfair Display', Georgia, serif;
-            line-height: 1.1;
-        }
-
-        .variant-editorial .eyebrow {
-            font-family: 'Inter', sans-serif;
-            font-size: 0.7rem;
-            font-weight: 700;
-            letter-spacing: 0.4em;
-            color: var(--muted);
-            text-transform: uppercase;
-            margin-bottom: 1.5rem;
-            opacity: 0;
-        }
-
-        .variant-editorial .quote {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            align-items: baseline;
-            gap: 0.18em;
-            font-style: italic;
-            font-weight: 400;
-            font-size: 3rem;
-            color: var(--ink);
-        }
-
-        .variant-editorial .no {
-            font-family: 'Playfair Display', Georgia, serif;
-            font-weight: 900;
-            font-style: italic;
-            font-size: 5rem;
-            line-height: 0.95;
-            background: linear-gradient(90deg, var(--accent), var(--accent));
-            background-size: 0% 100%;
-            background-repeat: no-repeat;
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .variant-editorial .underline-target {
-            position: relative;
-            opacity: 0;
-        }
-
-        .variant-editorial .underline-target::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            bottom: -0.06em;
-            width: 0;
-            height: 2px;
-            background: var(--accent);
-            border-radius: 1px;
-        }
-
-        .variant-editorial .tail {
-            margin-top: 1.1rem;
-            font-family: 'Playfair Display', Georgia, serif;
-            font-style: normal;
-            font-weight: 400;
-            font-size: 1.5rem;
-            color: var(--muted);
-            opacity: 0;
-        }
-
-        .banner-variant[data-variant="3"].is-playing .eyebrow {
-            animation: v3-fade 0.5s ease-out 0s forwards;
-        }
-        .banner-variant[data-variant="3"].is-playing .no {
-            animation: v3-ink 0.95s cubic-bezier(0.65, 0, 0.35, 1) 0.35s forwards;
-        }
-        .banner-variant[data-variant="3"].is-playing .underline-target {
-            animation: v3-fade 0.6s ease-out 0.55s forwards;
-        }
-        .banner-variant[data-variant="3"].is-playing .underline-target::after {
-            animation: v3-underline 0.85s ease-out 0.95s forwards;
-        }
-        .banner-variant[data-variant="3"].is-playing .tail {
-            animation: v3-fade 0.55s ease-out 1.35s forwards;
-        }
-
-        @keyframes v3-fade { to { opacity: 1; } }
-        @keyframes v3-ink { to { background-size: 100% 100%; } }
-        @keyframes v3-underline { to { width: 100%; } }
-
-        /* ---- Variant 4: Marquee ---- */
-        .variant-marquee {
-            padding: 0;
-        }
-
-        .variant-marquee-wrap {
-            position: relative;
-            width: 100vw;
-            left: 50%;
-            margin-left: -50vw;
-            background: var(--ink);
-            padding: 2.5rem 0;
-            overflow: hidden;
-        }
-
-        .variant-marquee-row {
-            display: flex;
-            white-space: nowrap;
-            overflow: hidden;
-            width: 100%;
-        }
-
-        .variant-marquee-row .marquee-track {
-            display: inline-flex;
-            gap: 2.25rem;
-            padding-right: 2.25rem;
-            flex-shrink: 0;
-            align-items: center;
-            will-change: transform;
-        }
-
-        .variant-marquee-row.row-big {
-            margin-bottom: 0.75rem;
-        }
-
-        .variant-marquee-row.row-big .marquee-track {
-            font-family: 'Space Grotesk', sans-serif;
-            font-weight: 700;
-            font-size: 3rem;
-            color: #fff;
-            letter-spacing: 0.04em;
-            animation: marquee-left 30s linear infinite;
-        }
-
-        .variant-marquee-row.row-big .item {
-            display: inline-flex;
-            gap: 0.4em;
-            align-items: baseline;
-        }
-
-        .variant-marquee-row.row-big .item .no {
-            color: var(--accent);
-        }
-
-        .variant-marquee-row.row-big .item .strike {
-            text-decoration: line-through;
-            text-decoration-color: var(--accent);
-            text-decoration-thickness: 0.07em;
-        }
-
-        .variant-marquee-row.row-big .sep {
-            color: var(--accent);
-            opacity: 0.7;
-        }
-
-        .variant-marquee-row.row-small .marquee-track {
-            font-family: 'Inter', sans-serif;
-            font-weight: 700;
-            font-size: 0.85rem;
-            letter-spacing: 0.28em;
-            text-transform: uppercase;
-            color: #888;
-            animation: marquee-right 42s linear infinite;
-        }
-
-        @keyframes marquee-left {
-            from { transform: translateX(0); }
-            to   { transform: translateX(-50%); }
-        }
-        @keyframes marquee-right {
-            from { transform: translateX(-50%); }
-            to   { transform: translateX(0); }
-        }
-
-        /* ---- Mobile ---- */
         @media (max-width: 640px) {
-            .variant-switcher { gap: 0.85rem; }
-            .variant-switcher button { font-size: 0.65rem; letter-spacing: 0.15em; }
-            .variant-strike { font-size: 1.8rem; }
-            .variant-sweep .line-1 { font-size: 1.5rem; }
-            .variant-sweep .no { font-size: 2.4rem; }
-            .variant-sweep .line-2 { font-size: 0.75rem; letter-spacing: 0.22em; }
-            .variant-editorial .quote { font-size: 1.85rem; }
-            .variant-editorial .no { font-size: 3rem; }
-            .variant-editorial .tail { font-size: 1.1rem; }
-            .variant-marquee-row.row-big .marquee-track { font-size: 1.85rem; gap: 1.25rem; padding-right: 1.25rem; }
-            .variant-marquee-row.row-small .marquee-track { font-size: 0.7rem; letter-spacing: 0.2em; }
+            .strike-headline { font-size: 1.8rem; }
         }
 
-        /* ---- Reduced motion ---- */
         @media (prefers-reduced-motion: reduce) {
-            .banner-variant *,
-            .banner-variant *::before,
-            .banner-variant *::after { animation: none !important; transition: none !important; }
-            .banner-variant[data-variant="1"] .no,
-            .banner-variant[data-variant="1"] .strike-target,
-            .banner-variant[data-variant="1"] .tail,
-            .banner-variant[data-variant="2"] .line-1,
-            .banner-variant[data-variant="2"] .line-2,
-            .banner-variant[data-variant="3"] .eyebrow,
-            .banner-variant[data-variant="3"] .underline-target,
-            .banner-variant[data-variant="3"] .tail { opacity: 1; }
-            .banner-variant[data-variant="1"] .no { transform: none; }
-            .banner-variant[data-variant="1"] .strike-target::after { width: 106%; }
-            .banner-variant[data-variant="2"] .sweep-target::before { transform: scaleX(1); }
-            .banner-variant[data-variant="3"] .no { background-size: 100% 100%; }
-            .banner-variant[data-variant="3"] .underline-target::after { width: 100%; }
+            .strike-headline .no,
+            .strike-headline .strike-target,
+            .strike-headline .tail { opacity: 1; animation: none !important; }
+            .strike-headline .no { transform: none; }
+            .strike-headline .strike-target::after { width: 106%; animation: none !important; }
         }
+
     </style>
 </head>
 <body>
@@ -588,7 +245,9 @@
         </section>
 
         <section class="section">
-            <h2 class="title is-3 has-text-centered">Video Demos</h2>
+            <h2 class="strike-headline">
+                <span class="no">No</span><span class="strike-target">barrier energies</span><span class="tail">&nbsp;used in these demos.</span>
+            </h2>
             <div class="demo-carousel">
                 <button class="scroll-button" type="button" id="scroll-left" aria-label="Scroll demos left">&#8249;</button>
                 <div class="demo-track" id="demo-track">
@@ -639,75 +298,6 @@
                     </div>
                 </div>
                 <button class="scroll-button" type="button" id="scroll-right" aria-label="Scroll demos right">&#8250;</button>
-            </div>
-        </section>
-
-        <section class="section banner-section" id="banner">
-            <div class="variant-switcher" role="tablist" aria-label="Choose headline style">
-                <button type="button" data-variant="1" class="is-active">Strike</button>
-                <button type="button" data-variant="2">Sweep</button>
-                <button type="button" data-variant="3">Editorial</button>
-                <button type="button" data-variant="4">Marquee</button>
-            </div>
-            <div class="banner-stage">
-                <div class="banner-variant is-playing" data-variant="1">
-                    <div class="variant-strike">
-                        <span class="no">No</span><span class="strike-target">barrier energies</span><span class="tail">&nbsp;used in these demos.</span>
-                    </div>
-                </div>
-                <div class="banner-variant" data-variant="2" hidden>
-                    <div class="variant-sweep">
-                        <div class="line-1">
-                            <span class="no">No</span><span class="sweep-target">Barrier Energies</span>
-                        </div>
-                        <div class="line-2">used in these demos</div>
-                    </div>
-                </div>
-                <div class="banner-variant" data-variant="3" hidden>
-                    <div class="variant-editorial">
-                        <div class="eyebrow">Demonstrations</div>
-                        <div class="quote">
-                            <span class="no">No</span><span class="underline-target">barrier energies</span>
-                        </div>
-                        <div class="tail">used in these demos.</div>
-                    </div>
-                </div>
-                <div class="banner-variant variant-marquee" data-variant="4" hidden>
-                    <div class="variant-marquee-wrap">
-                        <div class="variant-marquee-row row-big">
-                            <div class="marquee-track">
-                                <span class="item"><span class="no">No</span><span class="strike">barrier energies</span></span><span class="sep">&#9679;</span>
-                                <span class="item"><span class="no">No</span><span class="strike">barrier energies</span></span><span class="sep">&#9679;</span>
-                                <span class="item"><span class="no">No</span><span class="strike">barrier energies</span></span><span class="sep">&#9679;</span>
-                                <span class="item"><span class="no">No</span><span class="strike">barrier energies</span></span><span class="sep">&#9679;</span>
-                                <span class="item"><span class="no">No</span><span class="strike">barrier energies</span></span><span class="sep">&#9679;</span>
-                                <span class="item"><span class="no">No</span><span class="strike">barrier energies</span></span><span class="sep">&#9679;</span>
-                                <span class="item" aria-hidden="true"><span class="no">No</span><span class="strike">barrier energies</span></span><span class="sep" aria-hidden="true">&#9679;</span>
-                                <span class="item" aria-hidden="true"><span class="no">No</span><span class="strike">barrier energies</span></span><span class="sep" aria-hidden="true">&#9679;</span>
-                                <span class="item" aria-hidden="true"><span class="no">No</span><span class="strike">barrier energies</span></span><span class="sep" aria-hidden="true">&#9679;</span>
-                                <span class="item" aria-hidden="true"><span class="no">No</span><span class="strike">barrier energies</span></span><span class="sep" aria-hidden="true">&#9679;</span>
-                                <span class="item" aria-hidden="true"><span class="no">No</span><span class="strike">barrier energies</span></span><span class="sep" aria-hidden="true">&#9679;</span>
-                                <span class="item" aria-hidden="true"><span class="no">No</span><span class="strike">barrier energies</span></span><span class="sep" aria-hidden="true">&#9679;</span>
-                            </div>
-                        </div>
-                        <div class="variant-marquee-row row-small">
-                            <div class="marquee-track">
-                                <span>used in these demos</span><span>&middot;</span>
-                                <span>barrier-free elastodynamics</span><span>&middot;</span>
-                                <span>SIGGRAPH 2026</span><span>&middot;</span>
-                                <span>used in these demos</span><span>&middot;</span>
-                                <span>barrier-free elastodynamics</span><span>&middot;</span>
-                                <span>SIGGRAPH 2026</span><span>&middot;</span>
-                                <span aria-hidden="true">used in these demos</span><span aria-hidden="true">&middot;</span>
-                                <span aria-hidden="true">barrier-free elastodynamics</span><span aria-hidden="true">&middot;</span>
-                                <span aria-hidden="true">SIGGRAPH 2026</span><span aria-hidden="true">&middot;</span>
-                                <span aria-hidden="true">used in these demos</span><span aria-hidden="true">&middot;</span>
-                                <span aria-hidden="true">barrier-free elastodynamics</span><span aria-hidden="true">&middot;</span>
-                                <span aria-hidden="true">SIGGRAPH 2026</span><span aria-hidden="true">&middot;</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
         </section>
 
@@ -781,30 +371,6 @@
         demoCarousel.addEventListener("mouseenter", stopAutoLoop);
         demoCarousel.addEventListener("mouseleave", startAutoLoop);
         startAutoLoop();
-
-        // ---- Banner variant switcher ----
-        const switcherButtons = document.querySelectorAll(".variant-switcher button");
-        const variantBlocks = document.querySelectorAll(".banner-variant");
-
-        switcherButtons.forEach(btn => {
-            btn.addEventListener("click", () => {
-                const target = btn.dataset.variant;
-                switcherButtons.forEach(b => b.classList.toggle("is-active", b === btn));
-                variantBlocks.forEach(v => {
-                    const match = v.dataset.variant === target;
-                    if (match) {
-                        v.hidden = false;
-                        v.classList.remove("is-playing");
-                        // restart CSS animations by forcing reflow before re-adding class
-                        void v.offsetWidth;
-                        v.classList.add("is-playing");
-                    } else {
-                        v.hidden = true;
-                        v.classList.remove("is-playing");
-                    }
-                });
-            });
-        });
     </script>
 </body>
 </html>
