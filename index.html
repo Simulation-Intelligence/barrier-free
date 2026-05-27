@@ -11,14 +11,66 @@
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <title>Robust and Efficient Penetration-Free Elastodynamics without Barriers</title>
     <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             margin: 0;
-            padding-top: 30px;
+            padding-top: 4rem;
             padding-bottom: 30px;
             display: flex;
             flex-direction: column;
             align-items: center;
             overflow-x: hidden;
+        }
+
+        .site-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 20;
+            width: 100%;
+            margin-bottom: 0.5rem;
+            background: rgba(255, 255, 255, 0.96);
+            border-bottom: 1px solid #ededed;
+            backdrop-filter: blur(10px);
+        }
+
+        .site-nav-inner {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0.9rem 1.5rem;
+        }
+
+        .home-link {
+            position: absolute;
+            left: 1.5rem;
+            top: 50%;
+            display: flex;
+            align-items: center;
+            font-size: 1.25rem !important;
+            transform: translateY(-50%);
+        }
+
+        .site-nav a {
+            color: #4a4a4a;
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        .site-nav a:hover {
+            color: #3273dc;
+        }
+
+        #abstract,
+        #video-demos,
+        #BibTeX {
+            scroll-margin-top: 4.5rem;
         }
 
         .title {
@@ -144,11 +196,28 @@
 
         @media (max-width: 640px) {
             .no-barrier-caption { font-size: 1.4rem; }
+
+            .site-nav-inner {
+                gap: 1.25rem;
+                padding: 0.75rem 1rem;
+            }
+
+            .home-link {
+                left: 1rem;
+            }
         }
 
     </style>
 </head>
-<body>
+<body id="home">
+    <nav class="site-nav" aria-label="Section navigation">
+        <div class="site-nav-inner">
+            <a class="home-link" href="#home" aria-label="Back to top"><ion-icon name="home-outline"></ion-icon></a>
+            <a href="#abstract">Abstract</a>
+            <a href="#video-demos">Video Demos</a>
+            <a href="#BibTeX">Citation</a>
+        </div>
+    </nav>
     <div class="container has-text-centered">
         <p class="title is-2">Robust and Efficient Penetration-Free Elastodynamics without Barriers</p>
         <p class="title is-5 mt-2">
@@ -191,7 +260,7 @@
                 <strong>Squishy balls under extreme compression.</strong> Five elastic squishy balls are compressed by a moving boundary to extreme stress, generating dense contacts, and then released to rebound. The scene contains <strong>2.61M</strong> DoFs, <strong>2.25M</strong> tetrahedra, and generates up to <strong>1.45M</strong> active contact constraints. With significantly fewer Newton iterations and better conditioning, we achieve a <strong>98.5&times;</strong> speedup over GIPC [Huang et al. 2024], averaging <strong>5.37 s</strong> per frame.
             </figcaption>
         </figure>
-        <section class="section abstract-block">
+        <section class="section abstract-block" id="abstract">
             <h2 class="title is-3 has-text-centered">Abstract</h2>
             <p>
                 We introduce a barrier-free optimization framework for non-penetration elastodynamic simulation 
@@ -213,7 +282,7 @@
             </p>
         </section>
 
-        <section class="section">
+        <section class="section" id="video-demos">
             <h2 class="title is-3 has-text-centered">Video Demos</h2>
             <div class="demo-carousel">
                 <button class="scroll-button" type="button" id="scroll-left" aria-label="Scroll demos left">&#8249;</button>
