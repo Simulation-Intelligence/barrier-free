@@ -45,6 +45,18 @@
             line-height: 1.75;
         }
 
+        .teaser-figure {
+            margin: 0;
+        }
+
+        .teaser-caption {
+            margin: 0.75rem 1.5rem 0;
+            color: #4a4a4a;
+            font-size: 0.95rem;
+            line-height: 1.55;
+            text-align: justify;
+        }
+
         .section .title.is-3,
         .content .title {
             margin-top: 0 !important;
@@ -173,7 +185,12 @@
     </div>
 
     <div class="container is-max-desktop has-text-centered">
-        <img src="assets/teaser_small.jpg" alt="Teaser" style="width: 100%; max-width: 1200px; height: auto; margin-top: 2rem;">
+        <figure class="teaser-figure">
+            <img src="assets/teaser_small.jpg" alt="Squishy balls compressed by a moving boundary" style="width: 100%; max-width: 1200px; height: auto; margin-top: 2rem;">
+            <figcaption class="teaser-caption">
+                <strong>Squishy balls under extreme compression.</strong> Five elastic squishy balls are compressed by a moving boundary to extreme stress, generating dense contacts, and then released to rebound. The scene contains <strong>2.61M</strong> DoFs, <strong>2.25M</strong> tetrahedra, and generates up to <strong>1.45M</strong> active contact constraints. With significantly fewer Newton iterations and better conditioning, we achieve a <strong>98.5&times;</strong> speedup over GIPC [Huang et al. 2024], averaging <strong>5.37 s</strong> per frame.
+            </figcaption>
+        </figure>
         <section class="section abstract-block">
             <h2 class="title is-3 has-text-centered">Abstract</h2>
             <p>
