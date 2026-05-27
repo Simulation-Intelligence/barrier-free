@@ -68,6 +68,7 @@
         }
 
         #abstract,
+        #highlights,
         #video-demos,
         #BibTeX {
             scroll-margin-top: 4.5rem;
@@ -82,8 +83,10 @@
         }
 
         .container {
+            width: 100%;
             max-width: 1000px;
             margin: 0 auto;
+            box-sizing: border-box;
         }
 
         .abstract-block {
@@ -107,6 +110,181 @@
             font-size: 0.95rem;
             line-height: 1.55;
             text-align: justify;
+        }
+
+        .highlights-block {
+            padding-top: 2rem;
+            text-align: left;
+        }
+
+        .highlights-intro {
+            max-width: 800px;
+            margin: 0 auto 2.5rem;
+            color: #4a4a4a;
+            font-size: 1.05rem;
+            line-height: 1.7;
+            text-align: center;
+        }
+
+        .highlight-group-title {
+            margin: 2.5rem 0 1.25rem;
+            color: #363636;
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+
+        .highlights-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 1.5rem;
+        }
+
+        .highlight-card {
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            border: 1px solid #ededed;
+            border-radius: 8px;
+            background: #fff;
+            box-shadow: 0 3px 14px rgba(10, 10, 10, 0.04);
+        }
+
+        .highlight-media {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 220px;
+            padding: 1rem;
+            background: #fff;
+            text-align: center;
+        }
+
+        .highlight-media img {
+            display: block;
+            width: auto;
+            max-width: 100%;
+            max-height: 360px;
+            object-fit: contain;
+        }
+
+        .highlight-zoom {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            max-width: 100%;
+            padding: 0;
+            border: 0;
+            background: transparent;
+            cursor: zoom-in;
+        }
+
+        .highlight-zoom:focus-visible {
+            outline: 2px solid #3273dc;
+            outline-offset: 5px;
+        }
+
+        .highlight-media.is-balanced img {
+            height: var(--balanced-height);
+            max-height: none;
+        }
+
+        .highlight-media.pair-validation {
+            min-height: 180px;
+            padding-top: 0.35rem;
+            padding-bottom: 0.35rem;
+        }
+
+        .highlight-media.is-fill-pair {
+            min-height: 0;
+            padding: 0;
+        }
+
+        .highlight-media.is-fill-pair .highlight-zoom {
+            width: 100%;
+            height: 100%;
+        }
+
+        .highlight-media.is-fill-pair img {
+            width: 100%;
+            height: auto;
+            max-height: 100%;
+        }
+
+        .highlight-media.pair-stress {
+            aspect-ratio: 4000 / 2250;
+            padding-top: 0.65rem;
+            padding-bottom: 0.65rem;
+        }
+
+        .highlight-media.pair-comparison {
+            --balanced-height: 180px;
+            min-height: 190px;
+            padding-top: 0.35rem;
+            padding-bottom: 0.35rem;
+        }
+
+        .highlight-media.pair-solver {
+            aspect-ratio: 1984 / 744;
+        }
+
+        .highlight-copy {
+            flex: 1;
+            padding: 1rem 1.1rem 1.15rem;
+            border-top: 1px solid #f2f2f2;
+        }
+
+        .highlight-copy h4 {
+            margin-bottom: 0.45rem;
+            color: #1a1a1a;
+            font-size: 1.12rem;
+            font-weight: 600;
+        }
+
+        .highlight-copy p:last-child {
+            margin-bottom: 0;
+            color: #4a4a4a;
+            font-size: 0.96rem;
+            line-height: 1.6;
+        }
+
+        .image-lightbox {
+            position: fixed;
+            inset: 0;
+            z-index: 100;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 3.5rem;
+            background: rgba(0, 0, 0, 0.84);
+        }
+
+        .image-lightbox[hidden] {
+            display: none;
+        }
+
+        .image-lightbox img {
+            display: block;
+            max-width: min(94vw, 1500px);
+            max-height: calc(100vh - 5.5rem);
+            object-fit: contain;
+            background: #fff;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 1rem;
+            right: 1.25rem;
+            padding: 0.3rem 0.65rem;
+            border: 0;
+            background: transparent;
+            color: #fff;
+            font-size: 2.25rem;
+            line-height: 1;
+            cursor: pointer;
+        }
+
+        body.lightbox-open {
+            overflow: hidden;
         }
 
         .section .title.is-3,
@@ -205,6 +383,28 @@
             .home-link {
                 left: 1rem;
             }
+
+            .site-nav a {
+                font-size: 0.8rem;
+            }
+
+            .site-nav-inner {
+                gap: 0.65rem;
+                box-sizing: border-box;
+                padding-left: 2.5rem;
+            }
+
+            .highlights-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .highlight-media {
+                min-height: 180px;
+            }
+
+            .image-lightbox {
+                padding: 3.25rem 1rem 1rem;
+            }
         }
 
     </style>
@@ -212,9 +412,10 @@
 <body id="home">
     <nav class="site-nav" aria-label="Section navigation">
         <div class="site-nav-inner">
-            <a class="home-link" href="#home" aria-label="Back to top"><ion-icon name="home-outline"></ion-icon></a>
+            <a class="home-link" href="" aria-label="Back to top"><ion-icon name="home-outline"></ion-icon></a>
             <a href="#abstract">Abstract</a>
             <a href="#video-demos">Video Demos</a>
+            <a href="#highlights">Highlights</a>
             <a href="#BibTeX">Citation</a>
         </div>
     </nav>
@@ -257,14 +458,16 @@
         <figure class="teaser-figure">
             <img src="assets/teaser_small.jpg" alt="Squishy balls compressed by a moving boundary" style="width: 100%; max-width: 1200px; height: auto; margin-top: 2rem;">
             <figcaption class="teaser-caption">
-                <strong>Squishy balls under extreme compression.</strong> Five elastic squishy balls are compressed by a moving boundary to extreme stress, generating dense contacts, and then released to rebound. The scene contains <strong>2.61M</strong> DoFs, <strong>2.25M</strong> tetrahedra, and generates up to <strong>1.45M</strong> active contact constraints. With significantly fewer Newton iterations and better conditioning, we achieve a <strong>98.5&times;</strong> speedup over GIPC [Huang et al. 2024], averaging <strong>5.37 s</strong> per frame.
+                <strong>Squishy balls under extreme compression.</strong> Five elastic squishy balls are compressed by a moving boundary to extreme stress, generating dense contacts, and then released to rebound. The scene contains <strong>2.61M</strong> DoFs, <strong>2.25M</strong> tetrahedra, and generates up to <strong>1.45M</strong> active contact constraints. With significantly fewer Newton iterations and better conditioning, we achieve a <strong>98.5&times;</strong> speedup over <a href="https://doi.org/10.1145/3643028" target="_blank">GIPC [Huang et al. 2024]</a>, averaging <strong>5.37 s</strong> per frame.
             </figcaption>
         </figure>
+        <br />
+
         <section class="section abstract-block" id="abstract">
             <h2 class="title is-3 has-text-centered">Abstract</h2>
             <p>
                 We introduce a barrier-free optimization framework for non-penetration elastodynamic simulation 
-                that matches the robustness of Incremental Potential Contact (IPC) while overcoming its two primary 
+                that matches the robustness of <a href="https://ipc-sim.github.io/" target="_blank">Incremental Potential Contact (IPC)</a> while overcoming its two primary 
                 efficiency bottlenecks: <i>(1)</i> reliance on logarithmic barrier functions to enforce non-penetration 
                 constraints, which leads to ill-conditioned systems and significantly slows down the convergence of 
                 iterative linear solvers; and <i>(2)</i> the time-of-impact (TOI) locking issue, which restricts active-set 
@@ -338,6 +541,113 @@
             <p class="no-barrier-caption">No barrier energies used in these demos.</p>
         </section>
 
+        <section class="section highlights-block" id="highlights">
+            <h2 class="title is-3 has-text-centered">Experiment Highlights</h2>
+            <p class="highlights-intro">
+                From rigorous validation tests to high-stress contact and solver comparisons, these experiments highlight the robustness and efficiency of our barrier-free formulation.
+            </p>
+
+            <h3 class="highlight-group-title">Validation</h3>
+            <div class="highlights-grid">
+                <article class="highlight-card">
+                    <div class="highlight-media pair-validation">
+                        <button class="highlight-zoom" type="button" aria-label="Enlarge first-order convergence image">
+                            <img src="assets/experiment-highlights/fig08.png" loading="lazy" alt="Two colliding spheres and a convergence plot under time-step refinement">
+                        </button>
+                    </div>
+                    <div class="highlight-copy">
+                        <h4>Convergence under temporal refinement</h4>
+                        <p>Colliding soft spheres demonstrate first-order convergence as the time step is refined against a &Delta;t = <span style="white-space: nowrap;">10<sup>-4</sup></span> s reference solution.</p>
+                    </div>
+                </article>
+                <article class="highlight-card">
+                    <div class="highlight-media pair-validation">
+                        <button class="highlight-zoom" type="button" aria-label="Enlarge friction near the sliding threshold image">
+                            <img src="assets/experiment-highlights/fig11.png" loading="lazy" alt="Cubes sliding on an inclined surface and an acceleration plot for varying friction">
+                        </button>
+                    </div>
+                    <div class="highlight-copy">
+                        <h4>Accurate friction near the sliding threshold</h4>
+                        <p>Cubes on a 26.6&deg; slope reproduce the expected frictional behavior as the coefficient varies from 0.45 to 0.55 around the sliding threshold.</p>
+                    </div>
+                </article>
+            </div>
+
+            <h3 class="highlight-group-title">Stress Tests</h3>
+            <div class="highlights-grid">
+                <article class="highlight-card">
+                    <div class="highlight-media is-fill-pair pair-stress">
+                        <button class="highlight-zoom" type="button" aria-label="Enlarge large contact radius image">
+                            <img src="assets/experiment-highlights/fig13.png" loading="lazy" alt="High-resolution sphere comparison under increasing contact radius for our method and IPC">
+                        </button>
+                    </div>
+                    <div class="highlight-copy">
+                        <h4>Large contact radius without false contacts</h4>
+                        <p>For a sphere with <strong>50k vertices</strong>, our active contact count stays near <strong>4.3k</strong> as the radius increases, while IPC exceeds <strong>10<sup>7</sup></strong> contacts and runs out of memory.</p>
+                    </div>
+                </article>
+                <article class="highlight-card">
+                    <div class="highlight-media is-fill-pair pair-stress">
+                        <button class="highlight-zoom" type="button" aria-label="Enlarge extreme-speed impact image">
+                            <img src="assets/experiment-highlights/fig15.png" loading="lazy" alt="A pig impacting a thin plate at high speed, flattening, and rebounding">
+                        </button>
+                    </div>
+                    <div class="highlight-copy">
+                        <h4>Robust extreme-speed impact</h4>
+                        <p>A pig strikes a fixed thin plate at <strong>100 m/s</strong>, compresses into a thin layer, and rebounds while the simulation remains penetration-free throughout.</p>
+                    </div>
+                </article>
+            </div>
+
+            <h3 class="highlight-group-title">Solver Behavior And Comparisons</h3>
+            <div class="highlights-grid">
+                <article class="highlight-card">
+                    <div class="highlight-media is-fill-pair pair-solver">
+                        <button class="highlight-zoom" type="button" aria-label="Enlarge progress toward termination image">
+                            <img src="assets/experiment-highlights/fig22.png" loading="lazy" alt="Frame 200 TOI progress plots comparing our method and GIPC in an animal well experiment">
+                        </button>
+                    </div>
+                    <div class="highlight-copy">
+                        <h4>Fast progress toward termination</h4>
+                        <p>At frame 200 with <strong>103,946</strong> contacts, our method advances TOI faster than GIPC and requires <strong>4.24&times;</strong> fewer Newton iterations on average; solid and dashed lines show per-iteration and accumulated advances, resp.</p>
+                    </div>
+                </article>
+                <article class="highlight-card">
+                    <div class="highlight-media is-fill-pair pair-solver">
+                        <button class="highlight-zoom" type="button" aria-label="Enlarge better conditioned systems image">
+                            <img src="assets/experiment-highlights/fig27.png" loading="lazy" alt="Condition-number plot comparing our method and IPC under extreme compression">
+                        </button>
+                    </div>
+                    <div class="highlight-copy">
+                        <h4>Better conditioned systems</h4>
+                        <p>Under extreme compression, our formulation yields condition numbers about <strong>2 orders of magnitude</strong> smaller than IPC, with PCG averaging <strong>63.1</strong> iterations.</p>
+                    </div>
+                </article>
+                <article class="highlight-card">
+                    <div class="highlight-media is-balanced pair-comparison">
+                        <button class="highlight-zoom" type="button" aria-label="Enlarge trapped squishy balls image">
+                            <img src="assets/experiment-highlights/fig23.png" loading="lazy" alt="Two-color trapped squishy ball contact benchmark">
+                        </button>
+                    </div>
+                    <div class="highlight-copy">
+                        <h4>Comparison with <a href="https://dl.acm.org/doi/10.1145/3687908" target="_blank">Cubic Barrier [Ando 2024]</a></h4>
+                        <p>This trapped squishy-ball benchmark provides a dense-contact comparison with Cubic Barrier, where our method achieves up to <strong>84.4&times;</strong> faster performance.</p>
+                    </div>
+                </article>
+                <article class="highlight-card">
+                    <div class="highlight-media is-balanced pair-comparison">
+                        <button class="highlight-zoom" type="button" aria-label="Enlarge stacked cloth compared with OGC image">
+                            <img src="assets/experiment-highlights/fig25.png" loading="lazy" alt="Stacked cloth comparison between our method and OGC">
+                        </button>
+                    </div>
+                    <div class="highlight-copy">
+                        <h4>Comparison with <a href="https://dl.acm.org/doi/abs/10.1145/3731205" target="_blank">OGC [Chen et al. 2025]</a></h4>
+                        <p>In this stacked-cloth case, OGC uses 30 substeps and 30 iterations per time step yet runs <strong>4&times;</strong> slower and exhibits locking artifacts.</p>
+                    </div>
+                </article>
+            </div>
+        </section>
+
         <section class="section" id="BibTeX">
             <div class="container is-max-desktop content has-text-left">
                 <h2 class="title has-text-centered">BibTeX</h2>
@@ -355,6 +665,10 @@
 }</code></pre>
             </div>
         </section>
+    </div>
+    <div class="image-lightbox" id="image-lightbox" role="dialog" aria-modal="true" aria-label="Enlarged experiment image" hidden>
+        <button class="lightbox-close" type="button" aria-label="Close enlarged image">&times;</button>
+        <img src="" alt="">
     </div>
     <script>
         const demoTrack = document.getElementById("demo-track");
@@ -408,6 +722,38 @@
         demoCarousel.addEventListener("mouseenter", stopAutoLoop);
         demoCarousel.addEventListener("mouseleave", startAutoLoop);
         startAutoLoop();
+
+        const imageLightbox = document.getElementById("image-lightbox");
+        const lightboxImage = imageLightbox.querySelector("img");
+        const lightboxCloseButton = imageLightbox.querySelector(".lightbox-close");
+        let lastZoomButton = null;
+
+        function closeLightbox() {
+            imageLightbox.hidden = true;
+            document.body.classList.remove("lightbox-open");
+            lightboxImage.src = "";
+            if (lastZoomButton) lastZoomButton.focus();
+        }
+
+        document.querySelectorAll(".highlight-zoom").forEach((button) => {
+            button.addEventListener("click", () => {
+                const image = button.querySelector("img");
+                lastZoomButton = button;
+                lightboxImage.src = image.src;
+                lightboxImage.alt = image.alt;
+                imageLightbox.hidden = false;
+                document.body.classList.add("lightbox-open");
+                lightboxCloseButton.focus();
+            });
+        });
+
+        lightboxCloseButton.addEventListener("click", closeLightbox);
+        imageLightbox.addEventListener("click", (event) => {
+            if (event.target === imageLightbox) closeLightbox();
+        });
+        document.addEventListener("keydown", (event) => {
+            if (event.key === "Escape" && !imageLightbox.hidden) closeLightbox();
+        });
     </script>
 </body>
 </html>
